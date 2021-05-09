@@ -1,5 +1,7 @@
 # three-starter
 
+<video src='video.mp4'>
+
 ## set-up
 1. npm install
 2. npm run dev
