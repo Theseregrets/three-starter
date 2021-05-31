@@ -4,9 +4,24 @@ import gsap from "gsap";
 import * as dat from "dat.gui";
 
 // textures
+const loadingManager = new THREE.LoadingManager();
+
+loadingManager.onStart = () => {
+  console.log("onStart");
+};
+
+loadingManager.onLoaded = () => {
+  console.log("onLoaded");
+};
+loadingManager.onProgress = () => {
+  console.log("onProgress");
+};
+loadingManager.onError = () => {
+  console.log("onError");
+};
 
 const textureLoader = new THREE.TextureLoader();
-const texture = textureLoader.load("/textures/door.jpg");
+const colorTexture = textureLoader.load("/textures/door.jpg");
 
 //import { OrbitControls } from '/three/examples/js/controls/OrbitControls.js'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
@@ -42,7 +57,7 @@ const geometry = new THREE.BoxGeometry(1, 1, 1);
 // const positionAttribute = new THREE.BufferAttribute(positionArray, 3)
 // geometry.setAttribute('position', positionAttribute)
 const material = new THREE.MeshBasicMaterial({
-  map: texture,
+  map: colorTexture,
   //wireframe: true
 });
 const mesh = new THREE.Mesh(geometry, material);
