@@ -9,7 +9,7 @@ body
 {
     height: 100vh;
     font-family: 'Poppins';
-    width: 100%
+    
 }
 
 .webgl
@@ -19,4 +19,6 @@ body
     left: 0;
     outline: none;
     overflow: hidden;
+    min-height: 100vh;
+    min-width: 100%;
 }
