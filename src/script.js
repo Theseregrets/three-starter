@@ -27,6 +27,7 @@ loadingManager.onError = () => {
 
 const textureLoader = new THREE.TextureLoader();
 const colorTexture = textureLoader.load("/textures/door.jpg");
+colorTexture.minFilter = THREE.NearestFilter;
 
 //// DEBUG:
 const gui = new dat.GUI({
