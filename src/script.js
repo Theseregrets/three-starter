@@ -2,8 +2,11 @@ import "./style.css";
 import * as THREE from "three";
 import gsap from "gsap";
 import * as dat from "dat.gui";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-// textures
+const canvas = document.querySelector(".webgl");
+
+// loading manager
 const loadingManager = new THREE.LoadingManager();
 
 loadingManager.onStart = () => {
@@ -20,12 +23,10 @@ loadingManager.onError = () => {
   console.log("onError");
 };
 
+//textures
+
 const textureLoader = new THREE.TextureLoader();
 const colorTexture = textureLoader.load("/textures/door.jpg");
-
-//import { OrbitControls } from '/three/examples/js/controls/OrbitControls.js'
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-const canvas = document.querySelector(".webgl");
 
 //// DEBUG:
 const gui = new dat.GUI({
@@ -41,6 +42,7 @@ const parameters = {
     });
   },
 };
+
 //scene
 
 const scene = new THREE.Scene();
@@ -75,12 +77,14 @@ gui.addColor(parameters, "color").onChange(() => {
 });
 
 gui.add(parameters, "spin");
+
 //sizes
 
 const sizes = {
   height: window.innerHeight,
   width: window.innerWidth,
 };
+
 //resize
 
 window.addEventListener("resize", () => {
@@ -117,16 +121,18 @@ window.addEventListener("dblclick", () => {
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
 camera.position.z = 3;
 scene.add(camera);
+
 //control
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
+
+//cursors
 
 const cursor = {
   x: 0,
   y: 0,
 };
 
-//cursors
 const cursors = window.addEventListener("mousemove", (event) => {
   cursor.x = event.clientX;
   cursor.y = -event.clientY;
